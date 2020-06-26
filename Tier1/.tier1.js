@@ -2,36 +2,28 @@
  * Creste a function that will return the datatype
  *  parameter
  */
-const n = 12;
-
-const practiceFunction = () => {
-
-};
-
-console.log(typeof n);
+function datatype(n){
+    return typeof n;
+} 
+console.log(datatype(25));
 
 
  /**
   * Create a function that will take in a variable
   *  number of arguments and return their product
   */
- function product(a, b) {
-     return a + b ;
- }
 
- const x = product(5, 10);
- console.log(x);
+function getProduct(){
+    let sumOf = 1;
+    for(let i = 0; i < arguments.length; i++){
+        sumOf *= arguments[i];
+    }
+    return sumOf;
+}
+console.log(getProduct(8, 9));
+console.log(getProduct(8, 9, 11));
 
- /** OR */
 
- function defaultProduct(a = 1, b=2) {
-     return a + b;
- }
-
- console.log(defaultProduct());
- console.log(defaultProduct(9));
- console.log(defaultProduct(9, 18));
- console.log(defaultProduct(undefined, 7));
 
  /**
   * Create a function that iterates over an integer 
