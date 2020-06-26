@@ -1,0 +1,45 @@
+
+-- USER_ROLE TABLE -- 
+CREATE TABLE USER_ROLE (
+	role_id integer GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+	role_name varchar UNIQUE NOT NULL 
+);
+
+
+-- APP_USER Table --
+CREATE TABLE APP_USER (
+user_id INT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+username VARCHAR UNIQUE NOT NULL,
+password VARCHAR NOT NULL,
+first_name VARCHAR NOT NULL,
+last_name VARCHAR NOT NULL,
+role_id INT REFERENCES user_role (role_id) NOT NULL
+);
+
+-- CATEGORY Table -- 
+CREATE TABLE CATEGORY (
+category_id INT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+category_name VARCHAR UNIQUE NOT NULL
+);
+
+-- FLASHCARD Table --
+CREATE TABLE FLASHCARD (
+flashcard_id INT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+category_id INT REFERENCES category (category_id) NOT NULL,
+question VARCHAR UNIQUE NOT NULL,
+answer VARCHAR NOT NULL
+);
+
+-- STUDY_SET_CARD -- 
+CREATE TABLE STUDY_SET_CARD (
+	study_set_id INT REFERENCES study_set (study_set_id),
+	flashcard_id INT REFERENCES flashcard (flashcard_id),
+	PRIMARY KEY (study_set_id, flashcard_id)
+);
+
+-- STUDY_SET --
+CREATE TABLE STUDY_SET (
+study_set_id INT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+owner_id INT REFERENCES app_user (user_id) NOT NULL,
+name VARCHAR UNIQUE NOT NULL
+);
