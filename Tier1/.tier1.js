@@ -4,7 +4,9 @@
  */
 const n = 12;
 
-const practiceFunction = () => {};
+const practiceFunction = () => {
+
+};
 
 console.log(typeof n);
 
